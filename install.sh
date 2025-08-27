@@ -1,2 +1,2 @@
 # Zsh
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
+ln -sf ~/_configs/.zshrc ~/.zshrc
