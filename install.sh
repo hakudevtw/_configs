@@ -35,7 +35,6 @@ link_file() {
 link_file "$HOME/_config/zshrc" "$HOME/.zshrc"
 
 # Ghostty ---------------------------
-# XDG config path
 link_file "$HOME/_config/ghostty/config" "$HOME/.config/ghostty/config"
 
 echo -e "${GREEN}✨ All links created successfully!${RESET}"

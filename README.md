@@ -1,0 +1,43 @@
+# Haku's Mac Configs
+
+## Sync configuration files
+
+- Clone the repo into ~/\_config folder
+
+- Create symlinks
+  ```bash
+  bash install.sh
+  ```
+
+## Installation
+
+### Terminal
+
+- [oh-my-zsh](https://ohmyz.sh/)
+
+  ```bash
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  ```
+
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md)
+
+  ```bash
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  ```
+
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
+
+  ```bash
+  brew install zsh-syntax-highlighting
+  echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+  ```
+
+- [spaceship](https://github.com/spaceship-prompt/spaceship-prompt?tab=readme-ov-file#-installation)
+
+  ```bash
+  git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+
+  ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+  ```
+
+- [ghostty](https://ghostty.org/docs/install/binary#macos)
