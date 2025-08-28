@@ -32,9 +32,9 @@ link_file() {
 }
 
 # Zsh -------------------------------
-link_file "$HOME/_config/zshrc" "$HOME/.zshrc"
+link_file "$HOME/_configs/zshrc" "$HOME/.zshrc"
 
 # Ghostty ---------------------------
-link_file "$HOME/_config/ghostty/config" "$HOME/.config/ghostty/config"
+link_file "$HOME/_configs/ghostty/config" "$HOME/.config/ghostty/config"
 
 echo -e "${GREEN}✨ All links created successfully!${RESET}"

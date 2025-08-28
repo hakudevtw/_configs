@@ -14,7 +14,11 @@
 ## System
 
 ## Apps
+
 - Zed
+  ```bash
+  curl -f https://zed.dev/install.sh | sh
+  ```
 - Cursor
 - VScode
 - Notion

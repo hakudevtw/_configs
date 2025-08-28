@@ -1,7 +1,17 @@
-# node -------------------------------
-source $(brew --prefix nvm)/nvm.sh
+# System ----------------------------------
+# nvm
+if command -v nvm >/dev/null 2>&1; then
+  source "$(brew --prefix nvm)/nvm.sh"
+fi
 
-# oh-my-zsh -------------------------------
+# fnm (fast node manager)
+eval "$(fnm env --use-on-cd)"
+
+# zed
+export PATH=$HOME/.local/bin:$PATH
+
+# Terminal  -------------------------------
+# oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
 
 # Theme config
