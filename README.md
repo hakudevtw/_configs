@@ -1,4 +1,4 @@
-# Haku's Mac Configs
+# Haku's Macbook Configs
 
 ## Sync configuration files
 
@@ -10,6 +10,21 @@
   ```
 
 ## Installation
+
+## System
+
+## Apps
+- Zed
+- Cursor
+- VScode
+- Notion
+- Line
+- Scroll Reverser
+- Raycast
+- Karabiner-EventsViewer
+- Karabiner-Elements
+- Chrome
+- Arc
 
 ### Terminal
 
@@ -40,3 +55,5 @@
   ```
 
 - [ghostty](https://ghostty.org/docs/install/binary#macos)
+
+## Setup
