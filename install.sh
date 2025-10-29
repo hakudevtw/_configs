@@ -38,3 +38,9 @@ link_file "$HOME/_configs/zshrc" "$HOME/.zshrc"
 link_file "$HOME/_configs/ghostty/config" "$HOME/.config/ghostty/config"
 
 echo -e "${GREEN}✨ All links created successfully!${RESET}"
+
+# Github spec-kit
+# https://github.com/github/spec-kit?tab=readme-ov-file#-get-started
+brew install uv
+uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+echo -e "${GREEN}✨ Specify-cli installed successfully!${RESET}"
