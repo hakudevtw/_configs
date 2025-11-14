@@ -17,20 +17,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # Theme config
 ZSH_THEME="spaceship"
 
-# Spaceship settings
-SPACESHIP_PROMPT_ASYNC=true
-SPACESHIP_PROMPT_ADD_NEWLINE=true
-SPACESHIP_CHAR_SYMBOL="⚡"
-
-# Minimal spaceship sections for performance
-SPACESHIP_PROMPT_ORDER=(
-  time
-  user
-  dir
-  git
-  line_sep
-  char
-)
+# Load Spaceship custom config (if it exists)
+[ -f "$HOME/.config/spaceship.zsh" ] && source "$HOME/.config/spaceship.zsh"
 
 # Carefully ordered plugins (syntax highlighting must be last)
 plugins=(
@@ -47,4 +35,10 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#663399,standout"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-
+# pnpm
+export PNPM_HOME="/Users/yue/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

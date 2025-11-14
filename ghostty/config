@@ -1,7 +1,9 @@
 # Theme
-theme = catppuccin-mocha
-background-opacity = 0.8
+theme = Raycast Dark
+background-opacity = 0.7
 background-blur = true
+window-padding-x = 16
+window-padding-y = 16
 
 # Font
 font-family = JetBrainsMonoNL Nerd Font Mono
@@ -28,7 +30,9 @@ cursor-opacity = 0.8
 
 # Keybindings
 keybind = ctrl+r=reload_config
+keybind = global:cmd+backquote=toggle_quick_terminal
 
 # Other
 mouse-hide-while-typing = true
 resize-overlay = never
+macos-hidden = always
