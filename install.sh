@@ -41,7 +41,10 @@ link_file "$HOME/_configs/ghostty/config" "$HOME/Library/Application Support/com
 
 echo -e "${GREEN}✨ All links created successfully!${RESET}"
 
-# Github spec-kit --------------------
+# Linux
+alias ll='ls -latr'
+
+# Github spec-kit
 # https://github.com/github/spec-kit?tab=readme-ov-file#-get-started
 # brew install uv
 # uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
