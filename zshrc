@@ -5,7 +5,8 @@ if command -v nvm >/dev/null 2>&1; then
 fi
 
 # fnm (fast node manager)
-eval "$(fnm env --use-on-cd)"
+eval "$(fnm env --use-on-cd --shell zsh)"
+
 
 # zed
 export PATH=$HOME/.local/bin:$PATH
