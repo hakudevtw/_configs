@@ -6,7 +6,7 @@ window-padding-x = 16
 window-padding-y = 16
 
 # Font
-font-family = JetBrainsMonoNL Nerd Font Mono
+font-family = Maple Mono NF CN
 font-feature = -dlig
 font-size = 17
 

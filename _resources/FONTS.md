@@ -28,3 +28,10 @@ brew install --cask font-victor-mono
 
 ## JetBrains Mono
 > https://www.jetbrains.com/lp/mono/
+
+## Fira Code
+> https://github.com/tonsky/FiraCode
+
+```bash
+brew install font-fira-code
+```
