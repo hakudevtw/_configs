@@ -49,3 +49,7 @@ fpath=(/Users/$USER/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+
+# Added by Antigravity
+export PATH="/Users/$USER/.antigravity/antigravity/bin:$PATH"
