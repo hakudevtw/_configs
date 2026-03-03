@@ -6,31 +6,33 @@
 
 ### Editors
 
-- [Zed](https://zed.dev/)
-  ```bash
-  curl -f https://zed.dev/install.sh | sh
-  ```
-
 - Cursor
   ```bash
   brew install --cask cursor
   ```
-- VScode
+- VScode - Code Editor
   ```bash
   brew install --cask cursor
   ```
-- Notion
 
-- Cursor
-- VScode
-- Notion
-- Line
+### Dev
+- Docker Desktop
+- Git
+- Ghostty
+
+### System Tools
 - Scroll Reverser
 - Raycast
 - Karabiner-EventsViewer
 - Karabiner-Elements
+
+### Browsers
 - Chrome
 - Arc
+
+## Other Apps
+- Notion
+- Line
 
 ## Terminal Setup
 
