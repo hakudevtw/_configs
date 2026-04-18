@@ -32,12 +32,16 @@ link_file() {
 }
 
 # Zsh -------------------------------
-link_file "$HOME/_configs/zshrc" "$HOME/.zshrc"
-link_file "$HOME/_configs/spaceship.zsh" "$HOME/.config/spaceship.zsh"
+link_file "$HOME/_configs/configs/zshrc" "$HOME/.zshrc"
+link_file "$HOME/_configs/configs/spaceship.zsh" "$HOME/.config/spaceship.zsh"
 
 # Ghostty ---------------------------
-link_file "$HOME/_configs/ghostty/config" "$HOME/.config/ghostty/config"
-link_file "$HOME/_configs/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+link_file "$HOME/_configs/configs/ghostty" "$HOME/.config/ghostty/config"
+link_file "$HOME/_configs/configs/ghostty" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+
+# Claude Code -----------------------
+link_file "$HOME/_configs/configs/claude-code-router.config.json" "$HOME/.claude-code-router/config.json"
+link_file "$HOME/_configs/configs/.claude" "$HOME/.claude"
 
 echo -e "${GREEN}✨ All links created successfully!${RESET}"
 
