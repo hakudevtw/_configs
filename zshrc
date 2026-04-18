@@ -53,3 +53,8 @@ compinit
 
 # Added by Antigravity
 export PATH="/Users/$USER/.antigravity/antigravity/bin:$PATH"
+
+# bun
+[ -s "/Users/yue/.bun/_bun" ] && source "/Users/yue/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

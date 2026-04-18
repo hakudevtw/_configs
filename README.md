@@ -109,6 +109,11 @@
   brew install fzf
   ```
 
+- [bat](https://github.com/sharkdp/bat) - Cat Clone for Terminal, provides a cat clone for terminal.
+  ```bash
+  brew install bat
+  ```
+
 ### Node.js
 
 - [fnm](https://github.com/Schniz/fnm) - Fast Node Manager for Node.js, provides a fast Node.js manager for terminal.
@@ -118,6 +123,11 @@
 
   # Upgrade fnm
   brew upgrade fnm
+  ```
+
+- [bun](https://github.com/oven-sh/bun)
+  ```bash
+  curl -fsSL https://bun.com/install | bash
   ```
 
 ## Setup configuration files

@@ -9,5 +9,6 @@
 ## General
 - [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills)
 
-## Frontend Development
+## Web Development
 - [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
+- [claude-code/frontend-design](https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design)
