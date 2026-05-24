@@ -1,0 +1,10 @@
+---
+description: Next.js and React conventions
+globs: "**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+- Use App Router patterns (`app/` directory, layouts, loading states)
+- Prefer `fetch` with Next.js caching conventions over ad-hoc data fetching
+- Use TypeScript strict mode — no `any` unless unavoidable
+- Match existing component and file naming in the repo

@@ -1,0 +1,10 @@
+---
+description: Python conventions
+globs: "**/*.py"
+alwaysApply: false
+---
+
+- Use type hints on function signatures
+- Prefer pathlib over os.path for file operations
+- Use f-strings for formatting
+- Match existing import style (stdlib → third-party → local)

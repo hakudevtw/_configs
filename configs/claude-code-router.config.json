@@ -1,23 +1,42 @@
 {
   "LOG": true,
   "LOG_LEVEL": "info",
+  "CLAUDE_PATH": "",
   "HOST": "127.0.0.1",
   "PORT": 3456,
-  "API_TIMEOUT_MS": 600000,
+  "APIKEY": "",
+  "API_TIMEOUT_MS": "600000",
+  "PROXY_URL": "",
+  "transformers": [],
   "Providers": [
     {
       "name": "gemini",
       "api_base_url": "https://generativelanguage.googleapis.com/v1beta/models/",
       "api_key": "AIzaSyDYERd15uRgNyIbHiXAwEGGBRFbQKuwz64",
       "models": ["gemini-2.5-flash", "gemini-2.0-flash"],
-      "transformer": { "use": ["gemini"] }
+      "transformer": {
+        "use": ["gemini"]
+      }
     }
   ],
+  "StatusLine": {
+    "enabled": false,
+    "currentStyle": "default",
+    "default": {
+      "modules": []
+    },
+    "powerline": {
+      "modules": []
+    }
+  },
   "Router": {
     "default": "gemini,gemini-2.5-flash",
     "background": "gemini,gemini-2.5-flash",
     "think": "gemini,gemini-2.5-flash",
     "longContext": "gemini,gemini-2.5-flash",
-    "longContextThreshold": 60000
-  }
+    "longContextThreshold": 60000,
+    "webSearch": "",
+    "image": ""
+  },
+  "CUSTOM_ROUTER_PATH": ""
 }
