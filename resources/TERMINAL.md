@@ -57,6 +57,11 @@ Shell, CLI tools, and runtimes for a new Mac environment. Ghostty is listed in [
   brew install jesseduffield/lazydocker/lazydocker
   ```
 
+- **[tree](http://mama.indstate.edu/users/ice/tree/)** — Classic directory tree listing.
+  ```bash
+  brew install tree
+  ```
+
 - **[tre](https://github.com/dduan/tre)** — Tree view for directories with `.gitignore` awareness.
   ```bash
   brew install tre
