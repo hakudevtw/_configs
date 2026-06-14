@@ -31,6 +31,12 @@ Shell, CLI tools, and runtimes for a new Mac environment. Ghostty is listed in [
 
 ## CLI Tools
 
+- **[Claude Code](https://claude.com/product/claude-code)** — AI coding agent in the terminal. Build, debug, and ship from your codebase with Git and MCP integration.
+
+  ```bash
+  curl -fsSL https://claude.ai/install.sh | bash
+  ```
+
 - **[tlrc](https://github.com/tldr-pages/tldr)** — Concise, community-maintained command examples (tldr client).
   ```bash
   brew install tlrc

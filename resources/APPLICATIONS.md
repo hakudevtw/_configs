@@ -5,6 +5,7 @@ Apps to install when setting up a new Mac environment. See each project's docume
 ## Must Have
 
 - **[Cursor](https://cursor.com)** — AI-powered code editor built on VS Code, with integrated coding agents and chat.
+- **[Claude](https://claude.com/download)** — Desktop app for Claude chat, Cowork, and Claude Code. Syncs across desktop, web, and mobile.
 - **[OrbStack](https://orbstack.dev)** — Fast, lightweight Docker and Linux containers for macOS.
 - **[Git](https://git-scm.com/download/mac)** — Distributed version control system for tracking code changes.
 - **[Ghostty](https://ghostty.org)** — Fast, native terminal emulator with GPU rendering and modern features.
