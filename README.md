@@ -53,6 +53,8 @@ What's shared vs tool-specific:
 |--------|---------|--------|-------------|--------------|
 | Global rules | Yes | User rules / `AGENTS.md` | `~/.claude/CLAUDE.md` | `agent-skills/AGENTS.md` |
 | Skills | Yes | `~/.agents/skills/` | `~/.claude/skills/` | `.agents/skills/` + `skills/` |
+| Skills (Antigravity CLI) | Yes | — | `~/.gemini/antigravity-cli/skills/` | same sources, linked by `link-agent-config.sh` |
+| Skills (Antigravity app) | Yes | — | `~/.gemini/config/skills/` | same sources, linked by `link-agent-config.sh` |
 | MCP | Partially | Settings → MCP | `~/.claude.json` / `.mcp.json` | `agent-skills/mcp.json` (reference) |
 | Project rules | No | `.cursor/rules/*.mdc` | `CLAUDE.md` | Per project |
 | Settings / hooks / plugins | No | Tool UI | Tool config dirs | Add under `agent-skills/` when needed |

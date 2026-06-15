@@ -58,3 +58,10 @@ export PATH="/Users/$USER/.antigravity/antigravity/bin:$PATH"
 [ -s "/Users/$USER/.bun/_bun" ] && source "/Users/$USER/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/yue/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/yue/.local/bin:$PATH"
