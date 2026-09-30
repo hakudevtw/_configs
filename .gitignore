@@ -1,0 +1,8 @@
+.DS_Store
+
+# Machine overlay must never be committed
+local.zsh
+mcp.local.json
+
+# Project-level skill links created by `npx skills add`
+agent-skills/.claude/

@@ -1,0 +1,11 @@
+# Machine overlay: secrets and per-machine env. Copy to ~/.config/_configs/local.zsh
+#
+#   mkdir -p ~/.config/_configs
+#   cp configs/local.zsh.example ~/.config/_configs/local.zsh
+#   chmod 600 ~/.config/_configs/local.zsh
+#
+# Sourced at the end of ~/.zshrc. Never commit the real file.
+# Name variables yourself (e.g. MY_SERVICE_TOKEN): Claude Code blanks well-known
+# names like ANTHROPIC_API_KEY / NPM_TOKEN when used in remote MCP url/headers.
+
+# export MY_SERVICE_TOKEN="..."

@@ -37,7 +37,7 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 # pnpm
-export PNPM_HOME="/Users/$USER/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -45,23 +45,32 @@ esac
 # pnpm end
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/$USER/.docker/completions $fpath)
+fpath=($HOME/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
 
 
 # Added by Antigravity
-export PATH="/Users/$USER/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
 # bun
-[ -s "/Users/$USER/.bun/_bun" ] && source "/Users/$USER/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Added by Antigravity IDE
-export PATH="/Users/yue/.antigravity-ide/antigravity-ide/bin:$PATH"
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 
 # Added by Antigravity CLI installer
-export PATH="/Users/yue/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+# _configs helpers (repo root resolved through the ~/.zshrc symlink)
+_CONFIGS_ROOT="${${(%):-%x}:A:h:h}"
+alias skill-add="$_CONFIGS_ROOT/scripts/skill-add.sh"
+alias skill-update="$_CONFIGS_ROOT/scripts/skill-update.sh"
+alias skill-list="$_CONFIGS_ROOT/scripts/list-skills.sh"
+
+# Machine overlay (secrets, per-machine env) — not in git, see local.zsh.example
+[ -f "$HOME/.config/_configs/local.zsh" ] && source "$HOME/.config/_configs/local.zsh"
