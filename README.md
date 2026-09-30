@@ -21,7 +21,7 @@ _configs/
 ├── configs/                # Shell and terminal configs
 ├── agent-skills/           # [Agent Skills](agent-skills/README.md)
 │   ├── AGENTS.md           # Global rules → ~/.claude/CLAUDE.md
-│   ├── mcp.json            # MCP reference (copy into projects manually)
+│   ├── mcp.json            # Global MCP servers (synced via link-agent-config.sh)
 │   ├── .agents/skills/     # Community skills (npx skills + skills-lock.json)
 │   ├── skills/             # Custom global skills (hand-authored)
 │   └── skills-lock.json    # Pinned community skill versions
@@ -36,7 +36,8 @@ One script per feature area — not per app or service.
 |--------|---------|
 | `install.sh` | Run all scripts below |
 | `scripts/link-terminal-config.sh` | Shell (zsh, spaceship) + terminal (Ghostty) |
-| `scripts/link-agent-config.sh` | Global rules and skills (community + custom) |
+| `scripts/link-agent-config.sh` | Claude Code: global rules, MCP, skills (community + custom) |
+| `scripts/skill-add.sh` · `skill-update.sh` · `list-skills.sh` | Manage community skills (aliases `skill-add`, `skill-update`, `skill-list`) |
 
 ### Config layers
 
@@ -45,34 +46,58 @@ One script per feature area — not per app or service.
 | Global personal | Always-on preferences | `agent-skills/AGENTS.md` | Symlinked via `link-agent-config.sh` |
 | Project-specific | Domain docs, MCP, scoped rules | Inside each repo | Owned by the project |
 
-## Agent configuration reference
+## Secrets and per-machine config
 
-What's shared vs tool-specific:
-
-| Config | Shared? | Cursor | Claude Code | In this repo |
-|--------|---------|--------|-------------|--------------|
-| Global rules | Yes | User rules / `AGENTS.md` | `~/.claude/CLAUDE.md` | `agent-skills/AGENTS.md` |
-| Skills | Yes | `~/.agents/skills/` | `~/.claude/skills/` | `.agents/skills/` + `skills/` |
-| Skills (Antigravity CLI) | Yes | — | `~/.gemini/antigravity-cli/skills/` | same sources, linked by `link-agent-config.sh` |
-| Skills (Antigravity app) | Yes | — | `~/.gemini/config/skills/` | same sources, linked by `link-agent-config.sh` |
-| MCP | Partially | Settings → MCP | `~/.claude.json` / `.mcp.json` | `agent-skills/mcp.json` (reference) |
-| Project rules | No | `.cursor/rules/*.mdc` | `CLAUDE.md` | Per project |
-| Settings / hooks / plugins | No | Tool UI | Tool config dirs | Add under `agent-skills/` when needed |
-| OAuth / session | No | Cursor settings | `~/.claude.json` | Stays in each tool |
-
-### Skill sync workflow
-
-Community and custom skills live in separate repo dirs but are linked together in one pass:
+Everything in this repo is the **base config** shared by every Mac. Tokens and anything that differs per machine (work vs personal) live in a **machine overlay** outside the repo:
 
 ```bash
-cd agent-skills && npx skills add owner/repo --skill name   # writes to .agents/skills/
-# or create agent-skills/skills/my-skill/SKILL.md             # custom skill
-
-./scripts/link-agent-config.sh --no-update                    # re-link after add/create
-./scripts/link-agent-config.sh                                # same + npx skills update
+mkdir -p ~/.config/_configs
+cp configs/local.zsh.example ~/.config/_configs/local.zsh
+chmod 600 ~/.config/_configs/local.zsh
+$EDITOR ~/.config/_configs/local.zsh   # add: export MY_SERVICE_TOKEN="..."
 ```
 
-Re-run the link script after installing or creating a skill — it scans both dirs and symlinks each skill into `~/.agents/skills/` and `~/.claude/skills/`. Custom wins on name collisions.
+- `~/.zshrc` sources `local.zsh` last, so every new shell has the variables.
+- Configs reference secrets by name only (e.g. `${MY_SERVICE_TOKEN}` in MCP config), never by value.
+- Name variables yourself. Claude Code blanks well-known names (`ANTHROPIC_API_KEY`, `NPM_TOKEN`, …) when used in remote MCP `url`/`headers`.
+- **Apps launched from the Dock/Spotlight don't load `~/.zshrc`**, so they won't see these variables. Start Claude Code (or Claude Desktop) from a terminal, or the token expands empty.
+- `local.zsh` is plain text (chmod 600). It is gitignored (and will be added to Claude's `permissions.deny` in `settings.json`).
+
+## Agent configuration reference
+
+This repo targets Claude Code (and Claude Desktop for MCP) only.
+
+| Config | Claude location | In this repo |
+|--------|-----------------|--------------|
+| Global rules | `~/.claude/CLAUDE.md` | `agent-skills/AGENTS.md` (symlink) |
+| Skills | `~/.claude/skills/` | `agent-skills/.agents/skills/` (community) + `agent-skills/skills/` (custom) |
+| MCP | `~/.claude.json`, Claude Desktop config | `agent-skills/mcp.json` merged in by `sync-mcp-config.sh`; per-machine servers in `~/.config/_configs/mcp.local.json` |
+| Project rules | `CLAUDE.md` in each project | Per project |
+| Settings | `~/.claude/settings.json` | `agent-skills/settings.json` (symlink) |
+| Hooks | `~/.claude/hooks/` | `agent-skills/hooks/` (symlink) |
+| OAuth / session | `~/.claude.json` | Stays on each machine |
+
+### Safety guard
+
+`settings.json` denies Claude reading `.env*`, `~/.ssh`, `~/.aws`, `~/.npmrc` and `local.zsh`, and runs `hooks/guard-bash.py` before every Bash call:
+
+- **deny**: recursive `rm` of `/`, `~`, `$HOME`; force push to `main`/`master`
+- **ask**: `git reset --hard`, `git clean -f`, force push to other branches
+
+It looks at the command text (through `sudo`, `bash -c`, `$(...)`), so it is a guard against mistakes, not a security boundary: a script that does the deletion itself is not caught. If the hook itself errors it falls back to *ask*.
+
+### Managing skills
+
+Community skills come from GitHub via `npx skills` and are pinned in `agent-skills/skills-lock.json`. Custom skills are hand-written in `agent-skills/skills/<name>/SKILL.md`. Custom wins on name collisions.
+
+```bash
+skill-add owner/repo --skill name   # from any directory: install into the repo, then re-link
+skill-add owner/repo --list         # browse a repo without installing
+skill-update                        # update all community skills, show what changed, re-link
+skill-list                          # inventory + check lock / repo / ~/.claude/skills agree
+```
+
+Nothing is committed for you. Skills are instructions Claude follows, so read the diff after `skill-update` (`git diff -- agent-skills/.agents`), then commit or `git restore` it. Custom skill: create the `SKILL.md`, then run `scripts/link-agent-config.sh`.
 
 ## Resources
 
