@@ -118,3 +118,23 @@ link_skills_to() {
     warn "No skills found under: ${search_roots[*]}"
   fi
 }
+
+# Remove symlinks in dest that point into the repo but whose target no longer exists.
+prune_dangling_links() {
+  local dest=$1
+  local repo_root=$2
+  local link resolved
+
+  [ -d "$dest" ] || return 0
+
+  for link in "$dest"/*; do
+    [ -L "$link" ] && [ ! -e "$link" ] || continue
+    resolved="$(resolve_path "$link")"
+    case "$resolved" in
+      "$repo_root"/*)
+        rm "$link"
+        warn "removed dangling skill link $(basename "$link")"
+        ;;
+    esac
+  done
+}

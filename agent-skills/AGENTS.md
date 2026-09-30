@@ -1,6 +1,6 @@
 # Personal Agent Instructions
 
-Global preferences applied across all projects. Loaded by Cursor and Claude Code (via symlink to `~/.claude/CLAUDE.md`).
+Global preferences applied across all projects. Loaded by Claude Code (via symlink to `~/.claude/CLAUDE.md`).
 
 ## Code
 

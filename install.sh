@@ -12,7 +12,7 @@ source "$ROOT/scripts/lib/common.sh"
 info "Running install..."
 
 "$ROOT/scripts/link-terminal-config.sh"
-"$ROOT/scripts/link-agent-config.sh" --no-update
+"$ROOT/scripts/link-agent-config.sh"
 
 echo
 ok "Install complete"
