@@ -79,6 +79,7 @@ Brewfile 的某一行可以加上 `| replaces: 舊工具`。新工具裝好之�
 - **App Store 登入**：`mas` 要先登入才能裝 LINE。
 - **Claude Code**：`install.sh` 會用官方安裝程式裝，它會自己更新。不要同時裝 brew cask 或 npm 版。
 - **Google Antigravity／Antigravity CLI／Gemini app**：沒有套件，要自己下載（選用，見 `Brewfile.optional`）。
+- **Karabiner 設定**：`configs/karabiner.json` 是用「複製」的（新電腦第一次由 `link-terminal-config.sh` 複製），不是 symlink，因為 Karabiner 的圖形介面存檔時會把 symlink 換成一般檔案。在圖形介面改完設定後，把 `~/.config/karabiner/karabiner.json` 複製回 `configs/karabiner.json` 再 commit。它只接管外接鍵盤、忽略內建鍵盤，原因見 [resources/TOOLS.md](resources/TOOLS.md)。
 - **系統設定**：[resources/SYSTEM_SETTINGS.md](resources/SYSTEM_SETTINGS.md)。
 
 ## 登入與 Token 清單

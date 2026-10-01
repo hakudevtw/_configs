@@ -9,7 +9,7 @@ macOS settings to configure on a new machine. Adjust to taste — this is a chec
 
 ## Keyboard
 
-Karabiner-Elements handles most custom key mappings. Config is not yet in this repo — add when ready.
+Karabiner-Elements handles most custom key mappings; its config is `configs/karabiner.json`. It only grabs the external keyboard: the built-in keyboard is `ignore`d, because Karabiner's single virtual keyboard is ANSI and breaks a JIS built-in keyboard (see resources/TOOLS.md).
 
 - [ ] **Keyboard** — Key repeat rate and delay until repeat.
 - [ ] **Input Sources** — Layouts and shortcuts for switching languages.
