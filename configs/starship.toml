@@ -1,0 +1,54 @@
+# Ported from the previous spaceship.zsh: time, user, dir, git, node, package, then the prompt on its own line.
+add_newline = true
+
+format = """$time$username$directory$git_branch$git_status$nodejs$package
+$character"""
+
+[time]
+disabled = false
+format = "[$time](yellow) "
+time_format = "%H:%M"
+
+[username]
+format = "[$user](cyan) "
+
+[directory]
+truncation_length = 2
+truncate_to_repo = true
+style = "blue"
+read_only = "🔒 "
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+symbol = ""
+style = "magenta"
+format = "[$branch]($style) "
+
+[git_status]
+style = "red"
+format = "[\\[$all_status$ahead_behind\\]]($style) "
+untracked = "?"
+staged = "+"
+modified = "!"
+renamed = "»"
+deleted = "✘"
+stashed = "$"
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+
+[nodejs]
+symbol = "⬢ "
+style = "green"
+format = "[$symbol$version]($style) "
+
+[package]
+symbol = "📦 "
+style = "cyan"
+format = "[$symbol$version]($style) "
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❯](yellow)"

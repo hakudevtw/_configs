@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Symlink terminal config: shell (zsh) + emulator (Ghostty).
+# Symlink terminal config: shell (zsh, starship, mise), git (delta) + emulator (Ghostty).
 #
 # Usage: ./scripts/link-terminal-config.sh
 
@@ -13,7 +13,16 @@ info "Linking terminal config"
 
 # Shell
 link_path "$CONFIGS_ROOT/configs/zshrc" "$HOME/.zshrc"
-link_path "$CONFIGS_ROOT/configs/spaceship.zsh" "$HOME/.config/spaceship.zsh"
+link_path "$CONFIGS_ROOT/configs/spaceship.zsh" "$HOME/.config/spaceship.zsh" # fallback until starship is installed
+link_path "$CONFIGS_ROOT/configs/starship.toml" "$HOME/.config/starship.toml"
+link_path "$CONFIGS_ROOT/configs/mise.toml" "$HOME/.config/mise/config.toml"
+
+# Git: shared settings need delta, otherwise every `git diff` would fail on the missing pager
+if command -v delta >/dev/null 2>&1; then
+  link_path "$CONFIGS_ROOT/configs/gitconfig" "$HOME/.config/git/config"
+else
+  warn "delta not installed; skipping git config (run scripts/brew-install.sh, then this script again)"
+fi
 
 # Terminal emulator
 link_path "$CONFIGS_ROOT/configs/ghostty" "$HOME/.config/ghostty/config"

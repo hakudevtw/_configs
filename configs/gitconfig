@@ -1,0 +1,19 @@
+# Shared git settings. Linked to ~/.config/git/config (read before ~/.gitconfig,
+# which keeps the per-machine user.name and user.email).
+# Needs `delta` (Brewfile: git-delta); scripts/link-terminal-config.sh skips this file until it is installed.
+
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	line-numbers = true
+
+[merge]
+	conflictstyle = zdiff3
+
+[diff]
+	colorMoved = default

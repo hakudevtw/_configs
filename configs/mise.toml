@@ -1,0 +1,11 @@
+# Global tool versions. Linked to ~/.config/mise/config.toml by scripts/link-terminal-config.sh.
+# A repo's own mise.toml, .tool-versions, .nvmrc or .node-version overrides these inside that repo.
+
+[tools]
+node = "lts"
+pnpm = "latest"
+bun = "latest"
+
+[settings]
+# .nvmrc and .node-version are ignored by default; most work repos use them
+idiomatic_version_file_enable_tools = ["node"]
