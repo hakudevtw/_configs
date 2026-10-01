@@ -1,11 +1,11 @@
-# Machine overlay: secrets and per-machine env. Copy to ~/.config/_configs/local.zsh
+# 機器 overlay：機密與這台電腦專屬的環境變數。複製到 ~/.config/_configs/local.zsh
 #
 #   mkdir -p ~/.config/_configs
 #   cp configs/local.zsh.example ~/.config/_configs/local.zsh
 #   chmod 600 ~/.config/_configs/local.zsh
 #
-# Sourced at the end of ~/.zshrc. Never commit the real file.
-# Name variables yourself (e.g. MY_SERVICE_TOKEN): Claude Code blanks well-known
-# names like ANTHROPIC_API_KEY / NPM_TOKEN when used in remote MCP url/headers.
+# ~/.zshrc 最後會載入這個檔案。真正的檔案絕對不要 commit。
+# 變數名稱請自己取（例如 MY_SERVICE_TOKEN）：Claude Code 在遠端 MCP 的 url／headers 裡，
+# 會把 ANTHROPIC_API_KEY、NPM_TOKEN 這類常見名稱換成空字串。
 
 # export MY_SERVICE_TOKEN="..."

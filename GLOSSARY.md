@@ -27,3 +27,11 @@ _Avoid_: Skill list, skill registry
 **Secret**:
 A token or credential a config needs at runtime; lives only in the Machine overlay and is referenced by variable name from the Base config.
 _Avoid_: Key, password, env var (as a synonym)
+
+**Profile**:
+The role a machine declares, `work` or `personal`, written in its Machine overlay; it selects which Brewfile layer is installed.
+_Avoid_: Environment, mode
+
+**Optional list**:
+The Brewfile of things to try or to install only when a situation calls for them; never installed automatically.
+_Avoid_: Extras, nice-to-have
