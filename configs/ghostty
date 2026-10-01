@@ -29,7 +29,7 @@ cursor-invert-fg-bg = true
 cursor-opacity = 0.8
 
 # Keybindings
-keybind = ctrl+r=reload_config
+keybind = cmd+shift+r=reload_config
 keybind = global:alt+backquote=toggle_quick_terminal
 
 # Other
