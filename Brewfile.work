@@ -1,0 +1,5 @@
+# 只在公司電腦安裝（profile 是 work）。疊在 Brewfile 之上。
+# 公司 IT 管理的軟體（Office、OneDrive、ESET、Defender）刻意不列在這裡。
+
+cask "slack"                    # 團隊聊天
+cask "linear-linear"            # 任務追蹤

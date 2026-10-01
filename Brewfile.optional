@@ -1,0 +1,44 @@
+# 選用：不會在任何一台電腦自動安裝。
+# 想試試看，或視情況才需要的東西。每一項都附一句說明，方便你判斷要不要裝。
+#
+# 要裝某一項：拿掉那一行開頭的 #，然後執行 `brew bundle --file=Brewfile.optional`。
+# 要變成固定安裝：把它搬到 Brewfile 或 Brewfile.<profile>。
+
+# --- 瀏覽器（視情況） ---
+# Firefox Developer Edition：重現只在 Firefox 出現的問題（跨瀏覽器測試）
+# cask "firefox@developer-edition"
+# Microsoft Edge：只在要測 Edge 專屬問題時才需要
+# cask "microsoft-edge"
+# Dia：Arc 團隊做的接班人。底層是 Chromium、免費（Pro 版 20 美元/月）、只有 Mac，可以對著你開的分頁問 AI。2025 年被 Atlassian 收購。公司電腦要先確認分頁內容能不能送到雲端 AI。
+# cask "thebrowsercompany-dia"
+
+# --- 看公司需求 ---
+# Zoom：公司有用才需要
+# cask "zoom"
+
+# --- 想試試看 ---
+# Proxyman：檢視原生 app 與手機的 HTTP(S) 流量（網頁有瀏覽器 DevTools 就夠了）。開始做 app 時才需要。
+# cask "proxyman"
+# Warp：內建 AI 的終端機；閉源、需要帳號。功能和 Ghostty 加 Claude Code 重疊。
+# cask "warp"
+# Zed：很快的編輯器，比 Cursor 或 VS Code 輕。
+# cask "zed"
+# atuin：可搜尋、可同步的 shell 歷史。會搶走 fzf 的 Ctrl-R，兩者擇一。
+# brew "atuin"
+# yazi：終端機裡的檔案管理員。
+# brew "yazi"
+# difftastic：看得懂程式結構的 diff（不是逐行比較）。是 git-delta 的另一種選擇。
+# brew "difftastic"
+# ccusage：用 Claude Code 的本機日誌統計 token 用量。
+# brew "ccusage"
+# Codex：OpenAI 的 coding agent 命令列。
+# cask "codex"
+# opencode：開源的 coding agent 命令列。
+# brew "opencode"
+
+# CleanShot X：評測最常排第一的付費截圖工具（區域／視窗／卷動／定時截圖、精緻標註、錄影與 GIF、OCR、雲端分享連結），約 29 美元。考慮購買；買了就取代 Shottr（把 Brewfile 的 shottr 換成它）。
+# cask "cleanshot"
+
+# --- 要手動安裝的（沒有 Homebrew 套件） ---
+# Antigravity CLI（指令 `agy`）：Google 的 agent 命令列，2026 年 6 月取代了 Gemini CLI。從 antigravity.google 安裝。
+# Antigravity IDE 與 Gemini app：到 Google 網站下載。目前沒在用。

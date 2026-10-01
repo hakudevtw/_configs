@@ -1,0 +1,5 @@
+# 只在個人電腦安裝（profile 是 personal）。疊在 Brewfile 之上。
+
+cask "discord"                  # 聊天
+cask "nordvpn"                  # VPN
+cask "iina"                     # 影片播放器
