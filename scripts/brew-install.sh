@@ -55,11 +55,12 @@ fi
 info "Installing for profile: $PROFILE"
 
 # brew bundle fails on casks whose app already exists; adopt those first.
-while IFS= read -r cask; do
+# The list is read from fd 3 so brew keeps the real stdin (it may ask for a sudo password).
+while IFS= read -r -u 3 cask; do
   [ -n "$cask" ] || continue
   brew list --cask "$cask" >/dev/null 2>&1 && continue
   brew install --cask --adopt "$cask" || warn "Could not install cask $cask"
-done < <(brew bundle list --cask --file="$MERGED")
+done 3< <(brew bundle list --cask --file="$MERGED")
 
 brew bundle --no-upgrade --file="$MERGED" || warn "Some Brewfile entries failed (see above); mas needs an App Store sign-in"
 
