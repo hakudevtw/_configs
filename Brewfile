@@ -47,8 +47,7 @@ brew "mas"                      # 用命令列裝 Mac App Store 的 app（要先
 brew "mise"                     # 執行環境版本管理，依 repo 自動切換 Node | replaces: nvm fnm npm:pnpm npm:yarn npm:corepack path:~/.nvm path:~/.local/share/fnm path:~/.bun
 
 # --- 編輯器與 AI ---
-cask "cursor"
-cask "visual-studio-code"
+cask "cursor"                   # 主要編輯器，外掛清單見 configs/cursor-extensions.txt | replaces: visual-studio-code
 cask "claude"                   # Claude 桌面 app（Claude Code 本體：scripts/install-claude-code.sh）
 cask "cursor-cli"               # Cursor 的命令列 agent（指令 cursor-agent）| replaces: path:~/.local/bin/cursor-agent
 cask "orbstack"                 # 很快的 Docker 與 Linux 虛擬機 | replaces: docker-desktop app:Docker
