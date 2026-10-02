@@ -35,6 +35,21 @@ Scroll Reverser sets scroll direction per device. Use it instead of (or alongsid
 - [ ] **Full Disk Access** — Only for apps that require it (e.g. terminal tools, backup).
 - [ ] **FileVault** — Disk encryption on or off per your preference.
 
+## Menu Bar Icons
+
+Hidden by choice. Most of these can only be changed inside the app (the setting is not exposed as a `defaults` key), so do them by hand on each machine.
+
+- [ ] **Raycast** — Settings → General → turn off "Show in Menu Bar". On recent macOS it also has to be allowed in System Settings → Menu Bar.
+- [ ] **Bitwarden** — Preferences → App settings (all accounts) → turn off "Show menu bar icon".
+- [ ] **Karabiner-Elements** — Already hidden through `configs/karabiner.json` (`global.show_in_menu_bar`).
+- [ ] **Scroll Reverser** — Preferences → turn on "Hide menu bar icon" (`defaults write com.pilotmoon.scroll-reverser HideIcon -bool true`).
+- [ ] **AltTab** — Preferences → General → turn off the menu bar icon (`defaults write com.lwouis.alt-tab-macos menubarIconShown -bool false`).
+- [ ] **OrbStack** — Settings → turn off the menu bar item (`defaults write dev.kdrag0n.MacVirt global_showMenubarExtra -bool false`).
+
+- [ ] **Apps without their own setting (LINE, Claude, ...)** — macOS 26 only: System Settings → Menu Bar → "Allow in the Menu Bar", switch the app off. The app keeps running; only the icon goes away. macOS 15 has no per-app switch, leave those icons as they are.
+
+Kept on purpose: Notion Calendar, Shottr (hiding it needs a paid license), Caffeine (the icon is the whole app), Stats (each monitor module is an icon; turn modules off inside Stats if needed).
+
 ## Sound & Notifications
 
 - [ ] **Notifications** — Which apps can send alerts and how they appear.
