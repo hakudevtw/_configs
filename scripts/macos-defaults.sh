@@ -209,6 +209,6 @@ fi
 csrutil status 2>/dev/null | grep -q "enabled" && ok "SIP is on" || warn "SIP is off"
 spctl --status 2>/dev/null | grep -q "enabled" && ok "Gatekeeper is on" || warn "Gatekeeper is off"
 
-info "By hand (no setting to write): Liquid Glass slider, Dock Applications folder, sidebar, login items, turn off FortiClient launch at login"
+info "By hand (no setting to write): Liquid Glass slider, Dock Applications folder, sidebar, login items"
 [ "$PROFILE" = personal ] && info "Needs sudo: ./scripts/macos-defaults.sh --sudo"
 exit 0
