@@ -63,7 +63,6 @@ cask "obsidian"                 # Markdown 筆記
 cask "shottr"                   # 截圖，含標註與 OCR（免費版 30 天後會提示付費；考慮買 CleanShot X，見 Brewfile.optional）
 cask "karabiner-elements"       # 鍵盤重新對應
 cask "scroll-reverser"          # 滑鼠與觸控板分別設定捲動方向
-cask "domzilla-caffeine"        # 防止 Mac 休眠
 cask "stats"                    # 在選單列顯示 CPU、記憶體、磁碟、網路
 cask "alt-tab"                  # Windows 風格、有縮圖的視窗切換器
 cask "devutils"                 # 離線工具箱：JSON、Base64、JWT、雜湊、時間戳
@@ -79,3 +78,4 @@ mas "LINE", id: 539883307
 # obsolete: app:Arc app:Desktop-Translator npm:@google/gemini-cli gemini-cli
 # obsolete: uv tre-command 4k-video-downloader+ path:~/.local/bin/specify path:~/.local/share/uv/tools/specify-cli
 # obsolete: rbenv ruby-build gmp path:~/.rbenv
+# obsolete: domzilla-caffeine

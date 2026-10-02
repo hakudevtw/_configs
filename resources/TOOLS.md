@@ -144,7 +144,7 @@ Node、pnpm、bun 的版本寫在 `configs/mise.toml`（連結到 `~/.config/mis
 | DevUtils | 離線工具箱：JSON、Base64、JWT、雜湊、時間戳 | | [devutils.com](https://devutils.com/) |
 | Karabiner-Elements | 鍵盤重新對應；設定在 `configs/karabiner.json` | 只接管外接鍵盤（`hfd.cn`），內建鍵盤設為 `ignore`。Karabiner 只有一個虛擬鍵盤，版面是 ANSI；公司筆電的內建鍵盤是日文（JIS），如果被接管，`¥`、`_`、`:`、`@` 等鍵會錯位。換到有不同內建鍵盤的電腦，記得檢查這點 | [文件](https://karabiner-elements.pqrs.org/docs/) |
 | Scroll Reverser | 滑鼠與觸控板分別設定捲動方向 | | [pilotmoon.com](https://pilotmoon.com/scrollreverser/) |
-| Caffeine | 防止 Mac 休眠 | 點選單列的杯子 | |
+| Coffee（Raycast 擴充功能）| 防止 Mac 休眠，取代了 Caffeine | 在 Raycast 打 `coffee` | |
 | Notion、Notion Calendar、Figma | 工作工具 | | |
 | Slack、Linear | 公司 profile | | |
 | Discord、NordVPN、IINA | 個人 profile | | |

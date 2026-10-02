@@ -66,7 +66,7 @@ Hidden by choice. Most of these can only be changed inside the app (the setting 
 
 - [ ] **Apps without their own setting (LINE, Claude, ...)** — macOS 26 only: System Settings → Menu Bar → "Allow in the Menu Bar", switch the app off. The app keeps running; only the icon goes away. macOS 15 has no per-app switch, leave those icons as they are.
 
-Kept on purpose: Notion Calendar, Shottr (hiding it needs a paid license), Caffeine (the icon is the whole app), Stats (each monitor module is an icon; turn modules off inside Stats if needed).
+Kept on purpose: Notion Calendar, Shottr (hiding it needs a paid license), Stats (each monitor module is an icon; turn modules off inside Stats if needed).
 
 ## Sound & Notifications
 
