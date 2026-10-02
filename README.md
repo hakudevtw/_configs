@@ -191,6 +191,7 @@ skill-list                          # 清單，並檢查 lock／repo／~/.claude
 - [Agent Skills](agent-skills/README.md)：skills 的說明
 - [App 清單](resources/APPLICATIONS.md)：Brewfile 以外的 app
 - [Bitwarden 整理規則](resources/BITWARDEN.md)：資料夾、命名、欄位
+- [Apple 備忘錄使用規則](resources/APPLE_NOTES.md)：資料夾、收集箱流程、每週整理
 - [終端機](resources/TERMINAL.md)：手動步驟
 - [系統設定](resources/SYSTEM_SETTINGS.md)：macOS 設定檢查表
 - [字型](resources/FONTS.md)
