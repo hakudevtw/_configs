@@ -114,13 +114,24 @@ Brewfile 的某一行可以加上 `| replaces: 舊工具`。新工具裝好之�
 
 目前不需要登入的 MCP：`chrome-devtools`、`excalidraw`。
 
-### B. 需要放進環境變數的 Token（`local.zsh`）
+### B. 兩台共用的個人金鑰（放 Bitwarden，用的時候才拿）
 
-**目前 repo 裡沒有任何設定需要。** 未來新增的 MCP 或工具需要時，才加進下一節的 `local.zsh`。典型例子是公司私有 npm registry 的 token（放 `~/.npmrc`，不進 repo）。
+**目前 repo 裡沒有任何設定需要。** 之後有金鑰（例如 API key）要給指令或 MCP 用，就走這個做法，電腦上不留明文檔：
+
+1. 在 Bitwarden 建一個資料夾，名稱叫 `env`（App 或網頁版都可以）。
+2. 每個金鑰新增一個「登入」項目：**項目名稱 = 環境變數名稱**（例如 `MY_SERVICE_TOKEN`），**密碼欄 = 值**。
+3. 在終端機輸入 `bw-env`。第一次會要你登入，之後每個新終端機要輸入一次主密碼解鎖。它會把 `env` 資料夾裡的金鑰載入**目前這個終端機視窗**，只印出名稱，不印出值。關掉視窗就消失，不寫進任何檔案。
+
+- 兩台電腦（家裡、公司）都從同一個保險庫取，所以在 Bitwarden 改一次就好。
+- `bw-env` 只管「你個人」到處都要用的金鑰，**不碰專案自己的 `.env`**（那由各專案管理）。
+- 只有公司用的機密（例如公司私有 npm registry 的 token）不要放個人保險庫，請依公司規定處理，放 `~/.npmrc`，不進 repo。
+- 要讓 Claude Code 看到這些變數，請先在同一個終端機跑 `bw-env`，再從那個終端機啟動 Claude Code。
+- 做法在 [configs/bw-env.zsh](configs/bw-env.zsh)，由 `zshrc` 載入。
+- 保險庫的資料夾、命名與欄位規則：[resources/BITWARDEN.md](resources/BITWARDEN.md)。
 
 ## 機密與每台電腦的差異
 
-這個 repo 裡的一切都是所有 Mac 共用的**共用設定**。Token 與每台電腦不同的東西，放在 repo 外面的**機器 overlay**：
+這個 repo 裡的一切都是所有 Mac 共用的**共用設定**。**只屬於這台電腦**的值（兩台共用的金鑰請用上一節的 `bw-env`），放在 repo 外面的**機器 overlay**：
 
 ```bash
 mkdir -p ~/.config/_configs
@@ -179,6 +190,7 @@ skill-list                          # 清單，並檢查 lock／repo／~/.claude
 - [resources/TOOLS.md](resources/TOOLS.md)：每個工具是什麼、怎麼用、官方文件連結
 - [Agent Skills](agent-skills/README.md)：skills 的說明
 - [App 清單](resources/APPLICATIONS.md)：Brewfile 以外的 app
+- [Bitwarden 整理規則](resources/BITWARDEN.md)：資料夾、命名、欄位
 - [終端機](resources/TERMINAL.md)：手動步驟
 - [系統設定](resources/SYSTEM_SETTINGS.md)：macOS 設定檢查表
 - [字型](resources/FONTS.md)
