@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Sync MCP servers → Claude Code (~/.claude.json) and Claude Desktop.
+# Sync MCP servers → Claude Code (~/.claude.json) and Claude Desktop (local servers only).
 #
 # Sources (later wins on name clash):
 #   agent-skills/mcp.json                  base config, in git
@@ -63,9 +63,9 @@ def normalize_servers(servers: dict) -> dict:
     return normalized
 
 
-def merge_into(path: Path, servers: dict) -> None:
+def merge_into(path: Path, servers: dict, drop: set = frozenset()) -> None:
     data = load_json(path)
-    existing = data.get("mcpServers", {})
+    existing = {k: v for k, v in data.get("mcpServers", {}).items() if k not in drop}
     unmanaged = sorted(set(existing) - set(servers))
     data["mcpServers"] = {**existing, **servers}
     save_json(path, data)
@@ -90,7 +90,9 @@ servers = normalize_servers(servers)
 print(f"servers: {', '.join(sorted(servers)) if servers else '(none)'}")
 
 merge_into(claude_path, servers)
-merge_into(desktop_path, servers)
+# Claude Desktop only accepts local (command) servers; remote ones are added as connectors
+desktop_servers = {n: c for n, c in servers.items() if "command" in c}
+merge_into(desktop_path, desktop_servers, drop=set(servers) - set(desktop_servers))
 
 with_vars = sorted(n for n, c in servers.items() if "${" in json.dumps(c))
 if with_vars:

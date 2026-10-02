@@ -48,6 +48,8 @@ Reading settings is allowed (`defaults read`, `mdutil -s`). Writing is done by t
 
 | Login items (home) | Start at login: Raycast, Karabiner-Elements, Scroll Reverser, AltTab, Bitwarden, Shottr, Stats, Caffeine. Set by hand in each app's own "launch at login" option (or System Settings → General → Login Items & Extensions); not scriptable. Only NordVPN was a login item before. FortiClient (work VPN) is installed system-wide on the home machine and still to be decided |
 
+| Security (home) | Read-only state: FileVault, SIP, Gatekeeper, XProtect and auto-updates are on, guest and auto-login are off. Decided: turn the firewall on (it is off), stealth mode stays off. The script only checks and prints a warning, since changing it needs sudo |
+
 ### Still to decide, one group at a time
 
 Hot Corners, energy and sleep, FortiClient launch at login (keep the app, turn off its launcher and tray in Login Items & Extensions), FileVault and firewall (read-only checks only), anything that differs between work and personal.
