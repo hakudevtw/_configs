@@ -1,7 +1,6 @@
 aaron-bond.better-comments
 adpyke.codesnap
 ahmadalli.vscode-nginx-conf
-alexisvt.flutter-snippets
 anthropic.claude-code
 anysphere.cursorpyright
 anysphere.remote-containers
