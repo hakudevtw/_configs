@@ -50,9 +50,13 @@ Reading settings is allowed (`defaults read`, `mdutil -s`). Writing is done by t
 
 | Security (home) | Read-only state: FileVault, SIP, Gatekeeper, XProtect and auto-updates are on, guest and auto-login are off. Decided: turn the firewall on (it is off), stealth mode stays off. The script only checks and prints a warning, since changing it needs sudo |
 
+| Hot corners and desktop (home) | No hot corners (script makes sure all four are 1/no action, the bottom-right one already is). Clicking the wallpaper shows the desktop only in Stage Manager: `com.apple.WindowManager EnableStandardClickToShowDesktop` false |
+
+| Energy and sleep (home) | Display sleep stays at 2 min on battery and 10 min on power. Power Nap off (`sudo pmset -a powernap 0`) and wake for network access off (`sudo pmset -c womp 0`); both go in the separate sudo part of the script. Low power mode stays off, battery percentage in the menu bar stays on |
+
 ### Still to decide, one group at a time
 
-Hot Corners, energy and sleep, FortiClient launch at login (keep the app, turn off its launcher and tray in Login Items & Extensions), FileVault and firewall (read-only checks only), anything that differs between work and personal.
+ FortiClient launch at login (keep the app, turn off its launcher and tray in Login Items & Extensions), FileVault and firewall (read-only checks only), anything that differs between work and personal.
 
 ### Current values on the work machine (for comparison)
 
