@@ -48,7 +48,7 @@ _configs/
 |------|------|
 | `install.sh` | 依序執行下面所有腳本 |
 | `scripts/brew-install.sh` | 依這台電腦的 profile 安裝 Brewfile 裡的 app 與工具（`--dry-run` 先預覽） |
-| `scripts/brew-check.sh` | 列出 Brewfile 標記為「已被取代／不要了」但還裝著的東西（只列出，不會刪） |
+| `scripts/brew-check.sh` | 列出 Brewfile 標記為「已被取代／不要了」但還裝著的東西；加 `--apply` 會一項一項問你要不要刪 |
 | `scripts/install-shell.sh` | Oh My Zsh |
 | `scripts/install-claude-code.sh` | Claude Code（官方原生安裝程式） |
 | `scripts/lazygit-sandbox.sh` | 建立練習 lazygit 用的 repo（分支、squash、cherry-pick、會衝突的 rebase） |
@@ -71,6 +71,22 @@ profile 就是 `~/.config/_configs/profile` 裡的那個字。`scripts/brew-inst
 Brewfile 的某一行可以加上 `| replaces: 舊工具`。新工具裝好之後，`scripts/brew-check.sh` 會告訴你舊的可以移除。`# obsolete: 名稱` 則是「決定不要了」的東西。名稱可以寫 formula／cask 名、`npm:套件名`、`app:App 名稱`、`path:路徑`。
 
 每個工具怎麼用：[resources/TOOLS.md](resources/TOOLS.md)。
+
+## 整頓一台已經在用的電腦（例如家裡那台）
+
+照順序做，每一步確認沒問題再往下，**舊工具最後才刪**：
+
+1. `cd ~/_configs && git pull`，然後 `mkdir -p ~/.config/_configs && echo personal > ~/.config/_configs/profile`。
+2. 用 **Ghostty** 操作（不要用 Claude 裡的終端機）。先到「系統設定 → 隱私權與安全性 → App 管理」把 **Ghostty 打開**，Homebrew 才能接手你手動裝過的 app。
+3. `./scripts/brew-install.sh --dry-run` 預覽會裝什麼，確認後 `./scripts/brew-install.sh`。過程會要系統密碼；有失敗的項目，再跑一次就會補裝。
+4. `./scripts/link-terminal-config.sh`（或整套 `./install.sh`），連結 zsh、starship、mise、git 設定。
+5. 開一個**全新的終端機分頁**驗證：提示符、`node -v`、`Ctrl-R`（按住 control 再按 R）、灰色建議。
+6. `./scripts/brew-check.sh` 看哪些舊工具可以刪，確定後 `./scripts/brew-check.sh --apply`，它會一項一項問你：app 丟進垃圾桶（可還原），資料夾是永久刪除。
+7. 以下幾項要你自己先確認再刪：
+   - **Docker Desktop**：裡面如果有要留的容器或資料庫，先 `orb docker migrate`。`--apply` 刪它時要你輸入一句確認文字。
+   - **Yaak**：請求先匯入 Bruno。
+   - **Arc**：書籤和空間在 `~/Library/Application Support/Arc`，刪 app 不會清掉它。
+8. 如果還剩 root 擁有的殘留（以前用 `sudo npm install -g` 裝的），`--apply` 會問你要不要用 `sudo` 刪。
 
 ## 手動安裝
 

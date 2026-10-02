@@ -44,7 +44,7 @@ brew "mas"                      # 用命令列裝 Mac App Store 的 app（要先
 
 # --- 執行環境 ---
 # node、pnpm、bun 寫在 configs/mise.toml（版本由 git 管理）
-brew "mise"                     # 執行環境版本管理，依 repo 自動切換 Node | replaces: nvm fnm npm:pnpm npm:yarn npm:corepack path:~/.bun
+brew "mise"                     # 執行環境版本管理，依 repo 自動切換 Node | replaces: nvm fnm npm:pnpm npm:yarn npm:corepack path:~/.nvm path:~/.local/share/fnm path:~/.bun
 
 # --- 編輯器與 AI ---
 cask "cursor"
