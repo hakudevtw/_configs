@@ -20,20 +20,73 @@
 | 工具 | 是什麼 | 先試試看 | 文件 |
 |------|--------|---------|------|
 | gh | GitHub 命令列 | `gh auth login`、`gh pr create`、`gh pr view --web`、`gh pr checks` | [手冊](https://cli.github.com/manual/) |
-| lazygit | git 的終端機介面 | 看下面的 lazygit 五分鐘教學 | [repo](https://github.com/jesseduffield/lazygit) |
+| lazygit | git 的終端機介面 | 看下面的「lazygit 說明書」 | [repo](https://github.com/jesseduffield/lazygit) |
 | git-delta | 好讀的 diff。連結 `configs/gitconfig` 之後，`git diff`、`git log -p` 會自動使用 | 在 diff 裡按 `n`／`N` 跳到下一個／上一個檔案 | [文件](https://dandavison.github.io/delta/) |
 | lefthook | git hooks 執行器，只有放了 `lefthook.yml` 的 repo 才會啟用 | 在那樣的 repo 裡執行 `lefthook install` | [文件](https://lefthook.dev/) |
 
-### lazygit 五分鐘教學
+### lazygit 說明書
 
-在 repo 裡執行 `lazygit`。隨時按 `?` 可以看目前面板的按鍵清單；下面的按鍵來自專案文件，之後可能變動，以 `?` 為準。
+在 repo 裡執行 `lazygit`，按 `q` 離開。**忘了按鍵就按 `?`**，會列出目前面板的完整清單（以它為準，下面的按鍵來自官方文件）。設定檔在 `~/Library/Application Support/lazygit/config.yml`（目前是空的，全部用預設值）。
 
-- 面板有編號：`1` 狀態、`2` 檔案、`3` 分支、`4` Commits、`5` Stash。按數字跳過去。
-- 檔案面板：`space` 暫存／取消暫存單一檔案、`a` 全部暫存、`c` commit、`d` 捨棄修改。
-- 分支面板：`space` 切換分支、`n` 建立新分支。
-- Commits 面板：顯示 commit 列表。**把面板放大（按 `+`）就會出現分支圖（graph）**（預設設定是 `log.showGraph: when-maximised`；想一直顯示可以在 lazygit 設定裡改成 `always`）。對某個 commit 按 `enter` 可以看它改了哪些檔案。
-- `P` push、`p` pull、`q` 離開。
-- 只想看 graph：`lazygit log`，或不用 lazygit 的 `git log --graph --oneline --all --decorate`。
+**練習用的 repo**：`./scripts/lazygit-sandbox.sh` 會在 `~/lazygit-sandbox` 建一個練習 repo（分叉的分支、零碎的 wip commit、可以 cherry-pick 的 hotfix、一定會衝突的 rebase），然後 `cd ~/lazygit-sandbox && lazygit`。每次執行都會重建，玩壞了重跑就好，不要在真的 repo 練。
+
+#### 畫面
+
+數字鍵跳面板：`1` 狀態、`2` 檔案、`3` 分支、`4` Commits、`5` Stash。`↑／↓` 選項目，`←／→` 換面板。全域：`P` push、`p` pull、`z` 復原上一步、`Z` 重做。
+
+#### 日常：改檔、commit、push（面板 2）
+
+`space` 暫存／取消暫存、`a` 全部暫存、`c` commit、`A` 合併進上一個 commit（amend）、`d` 捨棄修改（危險）、`s` 存進 stash、`e` 用編輯器開。想只暫存檔案的一部分：選中檔案按 `Enter` 進去，`space` 暫存單行、`a` 選整個區塊。
+
+#### 看分支關係（graph，像 VS Code 的 Git Graph）
+
+- Commits 面板（`4`）**預設就顯示 graph**（官方設定 `git.log.showGraph` 預設是 `always`）。
+- **Status 面板（`1`）按 `a`**：在「目前分支」和「所有分支的 graph」之間切換。想一直顯示所有分支，在 `config.yml` 寫：
+  ```yaml
+  git:
+    log:
+      showGraph: always
+  gui:
+    statusPanelView: allBranchesLog
+  ```
+- 這是文字畫的 graph（彩色線條），不能點。沒有 lazygit 時：`git log --graph --oneline --all --decorate`。
+
+#### 建分支（面板 3、4）
+
+- 分支面板 `n`：從目前位置建新分支。
+- Commits 面板選一個 commit 按 `n`：從那個 commit 開新分支。
+- 分支面板：`space` 切換、`M` 合併進目前分支、`f` fast-forward、`d` 刪除。
+
+#### 整理 commit：squash、fixup、改順序（面板 4）
+
+`s` squash（合併進下面那個 commit）、`f` fixup（合併並丟掉訊息）、`r` 改訊息、`Ctrl+j`／`Ctrl+k` 把 commit 往下／往上移、`S` 一次合併所有 `fixup!` commit。互動式 rebase 就是直接對 commit 按這些鍵，不用寫 todo 清單。
+
+#### cherry-pick（面板 4）
+
+在來源分支選 commit 按 `C`（複製），切到目標分支再按 `V`（貼上）。複製錯了按 `Ctrl+r` 清掉選擇。
+
+#### rebase 與解衝突
+
+1. 分支面板選要 rebase 到的分支，按 `r`（把目前分支 rebase 到選中的分支）。選單的選項文字請看畫面，我沒驗證。
+2. 有衝突時，到檔案面板（`2`），選衝突的檔案按 `Enter` 進入衝突畫面。
+3. 衝突畫面：`↑／↓` 選區塊、`←／→` 在衝突之間移動、`space` 採用選中的那一邊、`b` 兩邊都留、`z` 復原、`e` 用編輯器手動改、`Esc` 回檔案面板。
+4. 解完在檔案面板 `space` 暫存，再按 `m`（merge／rebase 選項）選 continue；想放棄選 abort，會回到 rebase 之前的狀態。
+
+#### 救命
+
+`z` 復原、`Z` 重做（靠 reflog，大部分操作都救得回來）、`?` 看按鍵。
+
+#### 官方文件
+
+- [專案首頁（含功能動畫）](https://github.com/jesseduffield/lazygit)
+- [完整按鍵清單](https://github.com/jesseduffield/lazygit/blob/master/docs/keybindings/Keybindings_en.md)
+- [設定檔所有選項](https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md)
+- [Undoing（復原）](https://github.com/jesseduffield/lazygit/blob/master/docs/Undoing.md)
+- [Fixup commits](https://github.com/jesseduffield/lazygit/blob/master/docs/Fixup_Commits.md)
+- [Range select（一次選多個）](https://github.com/jesseduffield/lazygit/blob/master/docs/Range_Select.md)
+- [Stacked branches](https://github.com/jesseduffield/lazygit/blob/master/docs/Stacked_Branches.md)
+- [搜尋](https://github.com/jesseduffield/lazygit/blob/master/docs/Searching.md)
+- [所有文件目錄](https://github.com/jesseduffield/lazygit/tree/master/docs)
 
 ## 舊指令的現代替代品
 

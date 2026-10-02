@@ -51,6 +51,7 @@ _configs/
 | `scripts/brew-check.sh` | 列出 Brewfile 標記為「已被取代／不要了」但還裝著的東西（只列出，不會刪） |
 | `scripts/install-shell.sh` | Oh My Zsh |
 | `scripts/install-claude-code.sh` | Claude Code（官方原生安裝程式） |
+| `scripts/lazygit-sandbox.sh` | 建立練習 lazygit 用的 repo（分支、squash、cherry-pick、會衝突的 rebase） |
 | `scripts/link-terminal-config.sh` | Shell（zsh、starship、mise）、git（delta）、終端機（Ghostty） |
 | `scripts/link-agent-config.sh` | Claude Code：全域規則、MCP、設定、hooks、skills |
 | `scripts/skill-add.sh`・`skill-update.sh`・`list-skills.sh` | 管理社群 skills（alias：`skill-add`、`skill-update`、`skill-list`） |
