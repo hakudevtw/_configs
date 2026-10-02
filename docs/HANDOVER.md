@@ -30,13 +30,27 @@ Reading settings is allowed (`defaults read`, `mdutil -s`). Writing is done by t
 |---|---|
 | Spotlight shortcut (Cmd+Space) | Already off on the work machine; Raycast owns it. Script should make sure it is off on the home machine too |
 | Spotlight and external drives | Turn indexing off **only for external volumes**, keep the system volume indexed (Raycast file search relies on the Spotlight index, not verified). Write a small command that loops over `/Volumes` except the system disk, runs `sudo mdutil -i off` and creates `.metadata_never_index` where writable |
-| Finder | Show all file extensions: **yes**. Folders first, no `.DS_Store` on network drives, show hidden files: user wants to decide at home |
+| Finder | Show all file extensions: **yes**. Folders first, no `.DS_Store` on network and USB drives (already set on the home machine, still write them). Home decisions: hidden files stay off (Cmd+Shift+. toggles), new window opens Downloads, status bar on, path bar on, list view, search current folder, no drive icons on the desktop (`ShowExternalHardDrivesOnDesktop` and `ShowRemovableMediaOnDesktop` false) |
 
 | Menu bar icons | Hide the icon of apps whose icon is not needed. Karabiner is already done in `configs/karabiner.json` (`global.show_in_menu_bar: false`). Scroll Reverser and AltTab are hidden by hand on the work machine and still have to go into the script: `defaults write com.pilotmoon.scroll-reverser HideIcon -bool true`, `defaults write com.lwouis.alt-tab-macos menubarIconShown -bool false`. Decided with the user: hide Raycast and Bitwarden (manual toggles, no `defaults` key found), keep Notion Calendar, Shottr, Caffeine, Stats. OrbStack: `defaults write dev.kdrag0n.MacVirt global_showMenubarExtra -bool false`. LINE and Claude have no setting of their own: the home machine runs macOS 26, so switch them off in System Settings → Menu Bar → Allow in the Menu Bar (not scriptable as far as known); the work machine runs macOS 15 and is left alone. All steps are in `resources/SYSTEM_SETTINGS.md`, section Menu Bar Icons |
 
+| Dock (home, macOS 27) | Auto-hide off, tile size 42, magnification off, recent apps hidden, `mru-spaces` false (fixed Spaces order). The Apps (Launchpad replacement) icon is swapped by hand for the Applications folder (sort by name, grid). iPhone Apps turned off in System Settings → Spotlight |
+
+| Keyboard (home) | `KeyRepeat` 2, `InitialKeyRepeat` 15, `ApplePressAndHoldEnabled` false (hold repeats instead of the accent popup) |
+
+| Trackpad (home) | Keep what is set and write it into the script: tap to click, three-finger drag, four-finger swipe between Spaces, two-finger secondary click. Natural scrolling stays on for the trackpad; Scroll Reverser reverses only the mouse. Tracking speed stays at the system default. Function keys stay as media keys |
+
+| Text input (home) | Turn off auto-capitalise, double-space period, spelling correction, smart quotes and smart dashes (`NSAutomatic*Enabled` false). Input sources untouched (ABC, Zhuyin, Japanese romaji). This differs from the work machine, which still has capitalise and period on |
+
+| Screenshots (home) | Save to `~/Pictures/Screenshots` (script creates it; the old `~/Documents/` setting held no screenshots), window shadow off (`disable-shadow` true). Other keys stay default |
+
+| Appearance (home) | Dark. Liquid Glass slider toward transparent (manual, not scriptable). Accent colour multicolour, icon style automatic. Both left at the system default |
+
+| Login items (home) | Start at login: Raycast, Karabiner-Elements, Scroll Reverser, AltTab, Bitwarden, Shottr, Stats, Caffeine. Set by hand in each app's own "launch at login" option (or System Settings → General → Login Items & Extensions); not scriptable. Only NordVPN was a login item before. FortiClient (work VPN) is installed system-wide on the home machine and still to be decided |
+
 ### Still to decide, one group at a time
 
-Dock (auto-hide, size, recent apps, Mission Control space ordering), keyboard (key repeat speed and delay, press-and-hold), trackpad and scrolling (tap to click, natural scrolling; Scroll Reverser also exists), text input (auto-capitalise, smart period, auto-correct), screenshots (save location, shadow), appearance, Login Items, Hot Corners, energy and sleep, FileVault and firewall (read-only checks only), anything that differs between work and personal.
+Hot Corners, energy and sleep, FortiClient launch at login (keep the app, turn off its launcher and tray in Login Items & Extensions), FileVault and firewall (read-only checks only), anything that differs between work and personal.
 
 ### Current values on the work machine (for comparison)
 
