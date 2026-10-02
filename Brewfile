@@ -50,6 +50,7 @@ brew "mise"                     # 執行環境版本管理，依 repo 自動切�
 cask "cursor"
 cask "visual-studio-code"
 cask "claude"                   # Claude 桌面 app（Claude Code 本體：scripts/install-claude-code.sh）
+cask "cursor-cli"               # Cursor 的命令列 agent（指令 cursor-agent）| replaces: path:~/.local/bin/cursor-agent
 cask "orbstack"                 # 很快的 Docker 與 Linux 虛擬機 | replaces: docker-desktop app:Docker
 
 # --- 日常 app ---
@@ -77,3 +78,5 @@ mas "LINE", id: 539883307
 
 # --- 決定不要了的 ---
 # obsolete: app:Arc app:Desktop-Translator npm:@google/gemini-cli gemini-cli
+# obsolete: uv tre-command 4k-video-downloader+ path:~/.local/bin/specify path:~/.local/share/uv/tools/specify-cli
+# obsolete: rbenv ruby-build gmp path:~/.rbenv

@@ -39,6 +39,18 @@
 # CleanShot X：評測最常排第一的付費截圖工具（區域／視窗／卷動／定時截圖、精緻標註、錄影與 GIF、OCR、雲端分享連結），約 29 美元。考慮購買；買了就取代 Shottr（把 Brewfile 的 shottr 換成它）。
 # cask "cleanshot"
 
+# Ollama：在本機跑大型語言模型的 app。模型動輒數 GB，很吃記憶體和磁碟，公司電腦不適合自動安裝。
+# cask "ollama-app"
+# Grok Bot：「跨 app 工作的 AI 隊友」。我沒查過它實際做什麼，當作想試的記錄。
+# cask "grok-bot"
+# mole：Mac 深度清理與最佳化的命令列工具，會刪除系統和 app 的快取與殘留檔，所以不自動安裝。
+# brew "mole"
+
+# --- 之後可能需要（現在不裝） ---
+# Ruby：做 iOS 或 Flutter app 時，CocoaPods 和 Fastlane 需要 Ruby。遇到問題再裝，不要再用 rbenv，改用 mise 管理：
+#   mise use -g ruby@3.3        （版本依專案調整；第一次安裝可能需要編譯，見 https://mise.jdx.dev/lang/ruby.html）
+# 只要 CocoaPods 的話，也可以直接用 brew install cocoapods（它自帶 Ruby）。
+
 # --- 要手動安裝的（沒有 Homebrew 套件） ---
 # Antigravity CLI（指令 `agy`）：Google 的 agent 命令列，2026 年 6 月取代了 Gemini CLI。從 antigravity.google 安裝。
 # Antigravity IDE 與 Gemini app：到 Google 網站下載。目前沒在用。

@@ -3,3 +3,6 @@
 cask "discord"                  # 聊天
 cask "nordvpn"                  # VPN
 cask "iina"                     # 影片播放器
+brew "yt-dlp"                   # 命令列影音下載工具（網站支援最多，很活躍） | replaces: 4k-video-downloader+
+brew "ffmpeg"                   # 影音轉檔與剪輯；yt-dlp 合併影像和聲音時會用到
+mas "Xcode", id: 497799835      # Apple 開發工具（3 GB，要先登入 App Store）
