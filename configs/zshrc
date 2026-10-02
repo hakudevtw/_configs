@@ -64,5 +64,8 @@ command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
 # Syntax highlighting must be sourced last
 _zsh_plugin zsh-syntax-highlighting
 
+# bw-env: load personal secrets from the Bitwarden folder "env" into this session on demand
+[ -f "$_CONFIGS_ROOT/configs/bw-env.zsh" ] && source "$_CONFIGS_ROOT/configs/bw-env.zsh"
+
 # Machine overlay (secrets, per-machine env) — not in git, see local.zsh.example
 [ -f "$HOME/.config/_configs/local.zsh" ] && source "$HOME/.config/_configs/local.zsh"
