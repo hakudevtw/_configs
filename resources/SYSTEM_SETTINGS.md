@@ -29,6 +29,24 @@ Scroll Reverser sets scroll direction per device. Use it instead of (or alongsid
 - [ ] **Wallpaper** — Desktop background.
 - [ ] **Displays** — Resolution, scaling, and arrangement for external monitors.
 
+## Finder
+
+Finder → Settings. The sidebar is stored by the system and cannot be scripted.
+
+- [ ] **Sidebar** — Favorites: Applications, Desktop, Documents, Downloads, Pictures. Locations: your home folder, External disks, Trash. Turn off Recents, Shared, iCloud Drive, Cloud Storage, CDs, AirDrop, Bonjour computers, Connected servers and all Tags. Drag project folders (such as `_configs`) into Favorites.
+- [ ] **General** — New Finder windows show Downloads; no drive icons on the desktop.
+- [ ] **View menu** — Show Path Bar and Show Status Bar.
+
+| Shortcut | Action |
+|---|---|
+| `Cmd+Shift+.` | Show or hide hidden files |
+| `Cmd+Shift+G` | Go to a folder by path |
+| `Cmd+Shift+A` | Applications |
+| `Cmd+Shift+H` | Home folder |
+| `Cmd+Shift+D` | Desktop |
+| `Cmd+Option+L` | Downloads |
+| `Cmd+Option+P` | Toggle the path bar |
+
 ## Privacy & Security
 
 - [ ] **Accessibility** — Grant permissions for Karabiner-Elements, Raycast, Ghostty, and other automation tools.
