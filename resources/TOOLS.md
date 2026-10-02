@@ -130,7 +130,7 @@ Node、pnpm、bun 的版本寫在 `configs/mise.toml`（連結到 `~/.config/mis
 
 | App | 是什麼 | 備註 | 文件 |
 |-----|--------|------|------|
-| Raycast | 啟動器、視窗管理、剪貼簿歷史 | 預設 `Option+Space` | [手冊](https://manual.raycast.com/) |
+| Raycast | 啟動器、視窗管理、剪貼簿歷史 | 預設 `Option+Space`；這個 repo 把 Spotlight 的 `Cmd+Space` 關掉，改給 Raycast | [手冊](https://manual.raycast.com/) |
 | Cursor／VS Code | 編輯器 | Cursor 有 AI 功能 | [cursor.com](https://cursor.com/docs) |
 | Claude | 聊天與 Code 分頁的桌面 app | Claude Code 本體由 `scripts/install-claude-code.sh` 安裝 | [文件](https://code.claude.com/docs) |
 | OrbStack | Docker 與 Linux 虛擬機 | 安裝後 `docker` 指令就能用；想要介面用 `lazydocker` | [文件](https://docs.orbstack.dev/) |
@@ -148,6 +148,35 @@ Node、pnpm、bun 的版本寫在 `configs/mise.toml`（連結到 `~/.config/mis
 | Notion、Notion Calendar、Figma | 工作工具 | | |
 | Slack、Linear | 公司 profile | | |
 | Discord、NordVPN、IINA | 個人 profile | | |
+
+## 快捷鍵速查
+
+每天用的先背這 7 個，其他用到再查。視窗管理的快捷鍵要在 Raycast 裡手動設（指令名稱 → `Cmd+K` → Configure Command），無法寫進腳本。
+
+| 快捷鍵 | 用途 | 什麼時候用 |
+|---|---|---|
+| `Cmd+Space` | 叫出 Raycast | 開 app、找檔案、執行所有指令的入口 |
+| `Shift+Cmd+V` | 剪貼簿歷史 | 找剛才複製過的東西，直接貼上 |
+| `Option+Tab` | AltTab 切換視窗 | 同一個 app 開了多個視窗時，用縮圖分辨 |
+| `Ctrl+Opt+←` / `→` | 視窗左半、右半 | 兩個視窗並排 |
+| `Ctrl+Opt+Return` | 視窗最大化 | 不進全螢幕的放大 |
+| `Cmd+Shift+.` | Finder 顯示或隱藏隱藏檔 | 要看 `.git`、`.zshrc` 時 |
+| `Cmd+Shift+G` | Finder 跳到路徑 | 貼上路徑直接到 |
+
+用到再查：
+
+| 快捷鍵 | 用途 |
+|---|---|
+| `Ctrl+Opt+↑` / `↓` | 視窗上半、下半 |
+| `Ctrl+Opt+C` | 視窗置中 |
+| `Ctrl+Opt+U` `I` `J` `K` | 視窗的四個角落（大螢幕才有用）|
+| `Ctrl+Opt+N` | 視窗移到下一個螢幕（有外接螢幕才有用）|
+| `Cmd+Shift+A` / `H` / `D` | Finder 到應用程式、家目錄、桌面 |
+| `Cmd+Option+L` | Finder 到下載項目 |
+| `Fn+Q` | 快速備忘錄（見 [APPLE_NOTES.md](APPLE_NOTES.md)）|
+| `Cmd+Option+F` | 在備忘錄搜尋全部 |
+
+外接鍵盤 K500E-B94 由 Karabiner 對調左 Cmd 與左 Option，上表的 `Cmd`、`Option` 指對調後的結果。
 
 ## 這個 repo 的 Claude Code 設定
 
