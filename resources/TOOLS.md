@@ -178,6 +178,60 @@ Node、pnpm、bun 的版本寫在 `configs/mise.toml`（連結到 `~/.config/mis
 
 外接鍵盤 K500E-B94 由 Karabiner 對調左 Cmd 與左 Option，上表的 `Cmd`、`Option` 指對調後的結果。
 
+## Raycast 設定清單
+
+Raycast 的快捷鍵、別名、擴充功能的開關存在它自己的加密資料庫，無法寫進腳本，也不進 repo。換機器時用 Settings → Advanced 的 Export／Import（匯出檔有密碼，不要放進 repo 或聊天，匯入後刪掉），或照這份清單重設。原則：只留「會搜尋名字叫出來」的指令，選單列項目和 AI、Pro 功能一律關。
+
+### 快捷鍵與 Favorites
+
+| 項目 | 設定 |
+|---|---|
+| Raycast | `Cmd+Space`（Spotlight 的快捷鍵由 `macos-defaults.sh` 保持關閉）|
+| Clipboard History | `Shift+Cmd+V`；主要動作貼上；偏好純文字；不記錄 Keychain Access、Passwords、Bitwarden、Ghostty |
+| 視窗管理 | `Ctrl+Opt` 加方向鍵（半邊）、`Return` 或 `M`（最大化）；每個指令要打勾啟用 |
+| Favorites | 只放 Dock 沒有的指令：List Repos、Coffee、Kill Process、Color Picker、Translate。Dock 上固定的 app 不放 |
+
+### 別名
+
+先設前六個，其餘用過幾天再補。
+
+| 別名 | 指令 |
+|---|---|
+| `repo` | Git Repos 的 List Repos |
+| `port` | Port Manager 的 Open Ports |
+| `kp` | Port Manager 的 Kill Process Listening on |
+| `nn` | Apple Notes 的 New Note |
+| `timer` | Timers 的 Start Custom Timer |
+| `cf` | Coffee 的 Toggle Caffeinate |
+| `ob`、`od` | Obsidian 的 Search Note、Daily Note |
+| `tab` | Google Chrome 的 Search Tabs |
+| `url`、`jwt`、`ts`、`fj` | DevUtils 的 URL Parser、JWT Debugger、Unix Time Converter，Format JSON 的 Format Clipboard JSON |
+
+### 內建擴充功能：停用
+
+AI、Dictation、Screen Awareness、MCP（Raycast 的 MCP 只給 Raycast AI 用，和 Claude 的 MCP 無關）、Raycast for Teams、Raycast Notes、Raycast Focus、Typing Practice、Contacts、Calendar、Apple Shortcuts、Dictionary、Script Commands。
+
+### 商店擴充功能
+
+| 擴充功能 | 留的指令 | 備註 |
+|---|---|---|
+| Git Repos | List Repos | Repo Scan Path `~/Documents/projects`，深度 3；Enter 用 Cursor 開，Cmd+Enter 用 Finder。Ghostty 無法在指定資料夾開新視窗，不要設 |
+| Port Manager | Open Ports、Kill Process Listening on | Kill Signal 選 SIGTERM；關掉選單列 |
+| Kill Process | Kill Process | 開 Show Process Path；不要開「不再確認」|
+| Color Picker | Pick Color、Convert Color、Organize Colors | 關選單列 |
+| GitHub | Search Repositories、My Pull Requests | 用瀏覽器授權登入，不填 Token；Default Clone Path 設 `~/Documents/projects`；關掉選單列 |
+| Apple Notes | New Note、Search Notes、Add Text to Note | 關 AI 和選單列；規則見 [APPLE_NOTES.md](APPLE_NOTES.md) |
+| Notion | Search Notion、Manage Notion Connection | 收集箱只用 Apple 備忘錄，所以關 Quick Capture 等 |
+| Google Chrome | Search Tabs、Search Bookmarks、New Tab、Search History | |
+| Timers | Start Custom Timer、Stop Running Timer、Dismiss Ringing Timer、Manage Timers | 關選單列 |
+| Coffee | 取代 Caffeine | |
+| DevUtils | JWT Debugger、URL Parser、Base64、UUID、Unix Time、HTML to JSX、RegExp、Text Diff、Hash、String Case、JSON↔YAML、Auto Detect | 這些指令只是 DevUtils app 的遙控器，不能刪 app；JSON 格式化交給 Format JSON |
+| Format JSON | Format Clipboard JSON、Format Selected JSON | |
+| Mole | Uninstall App、Analyze Disk、Purge Dev Artifacts | 需要命令列的 `mo`；會刪東西的 Clean System 等關掉 |
+| Slack、Linear | 家裡不用，工作那台再看 | Slack 要 `xoxp-` Token，需公司許可；Token 存 Bitwarden，不貼到聊天 |
+
+Cloud Sync 是 Pro 功能，不買；兩台之間用 Export／Import。
+
 ## 這個 repo 的 Claude Code 設定
 
 見 [README](../README.md)：skills（`skill-list`、`skill-add`、`skill-update`）、安全守衛 hook、通知、狀態列。
