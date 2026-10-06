@@ -5,7 +5,7 @@ description: Implement or update a screen or component from a Figma design insid
 
 # Figma to codebase
 
-Version 0.1 (2026-10-05). Hand-distributed: if a colleague has an older copy, ask for the version line.
+Version 0.3 (2026-10-06). Hand-distributed: if a colleague has an older copy, ask for the version line.
 
 The codebase is the **source of truth**. Figma is a **reference**: its tokens drift from the code, its structure is uneven, and it carries no annotations. Translate the design into what the codebase already has. Match intent, not pixels.
 
@@ -28,7 +28,7 @@ Start the dev server and screenshot the existing page at the widths of the desig
 
 ### 3. Fetch the design
 
-Invoke `figma-design-to-code` and follow its fetching mechanics: design context, sparse responses, asset download, Code Connect, absolute positioning translated into native layout. **This skill wins every conflict.** Where `figma-design-to-code` makes the design screenshot the target the code must match, or says to implement only from the design context, use the screenshot only as a comparison reference and implement from the codebase. Done when you hold the design context and the design screenshot.
+Invoke `figma-design-to-code` and follow its fetching mechanics: design context, sparse responses, asset download, Code Connect, absolute positioning translated into native layout. **This skill wins every conflict.** Where `figma-design-to-code` makes the design screenshot the target the code must match, or says to implement only from the design context, use the screenshot only as a comparison reference and implement from the codebase. Icons are an exception to its "use the exact SVG asset" rule: follow **Icons** below instead. Done when you hold the design context and the design screenshot.
 
 ### 4. Plan, then wait
 
@@ -36,7 +36,7 @@ Write the plan with these seven sections and present it. Done when the user appr
 
 1. **Differences**: current screenshot against the design; list only real differences.
 2. **Reuse**: shadcn/ui and existing project components, each mapped to the part of the design it covers.
-3. **Downloads**: shadcn components to add, images, SVGs. Announce them here; fetch after approval.
+3. **Downloads**: shadcn components to add, images, non-icon SVGs. Announce them here; fetch after approval. List every icon in the design with the icon chosen for it from the project's icon library (see **Icons**); an icon with no match goes to section 7, not here.
 4. **Token map**: every colour, font size, spacing and radius in the design, mapped to a Tailwind class or project token. Mark each "exact" or "nearest".
 5. **New tokens**: for each value with no fit, propose a name and value, and offer the one to three nearest existing tokens as alternatives. Compare colours by how close they look, then by hex.
 6. **Primitives**: what will be overridden through `className`, and what would need a change to `components/ui` (needs approval, with the reason).
@@ -50,6 +50,15 @@ Write the plan with these seven sections and present it. Done when the user appr
 - Add tokens only as approved in section 5. Put them where the project already defines its tokens.
 - Announce any download before running it.
 - Touch only the requested screen or component.
+
+## Icons
+
+The project's icon library is the first choice for every icon. Its rules live in the project's own docs (`CLAUDE.md` / `AGENTS.md` and the files they point to); where they name no library, use the icon library the codebase already imports. Do not download an icon SVG from Figma when a library icon fits.
+
+- Pick the library icon closest in shape and meaning to the design's icon. Confirm the component exists in the installed package before using it, and import it by name (no barrel or namespace import).
+- If no library icon fits, do not substitute another icon library, redraw the icon, or download the Figma SVG on your own. Stop and ask the user, showing the design icon and the closest library candidates. The user decides.
+- Size and colour through Tailwind classes (`size-*`, `text-*`). Do not change an icon's shape.
+- A Figma icon shown as a raster image or as part of an illustration is an image, not an icon; handle it under **Downloads**.
 
 ### 6. Verify
 
