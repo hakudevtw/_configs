@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Symlink terminal config: shell (zsh, starship, mise), git (delta), Karabiner + emulator (Ghostty).
+# Symlink terminal config: shell (zsh, starship, mise), git (delta), Karabiner + emulator (Ghostty),
+# plus IINA's key bindings and the Zed editor.
 #
 # Usage: ./scripts/link-terminal-config.sh
 
@@ -38,5 +39,11 @@ fi
 # Terminal emulator
 link_path "$CONFIGS_ROOT/configs/ghostty" "$HOME/.config/ghostty/config"
 link_path "$CONFIGS_ROOT/configs/ghostty" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+
+# IINA key bindings (default keys + video zoom/pan). In IINA: Settings → Key Bindings → choose "mine".
+link_path "$CONFIGS_ROOT/configs/iina-input.conf" "$HOME/Library/Application Support/com.colliderli.iina/input_conf/mine.conf"
+
+# Zed editor. Zed resolves the symlink when saving, so changes made in its UI land in the repo.
+link_path "$CONFIGS_ROOT/configs/zed/settings.json" "$HOME/.config/zed/settings.json"
 
 ok "Terminal config linked"

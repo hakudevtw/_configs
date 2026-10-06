@@ -1,0 +1,88 @@
+// Zed settings. Linked to ~/.config/zed/settings.json by scripts/link-terminal-config.sh.
+// Zed writes UI changes (theme, font size) through the symlink, so they land here.
+//
+// All defaults: `zed: open default settings` in the command palette.
+{
+  "base_keymap": "VSCode",
+  "autosave": "off",
+
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "macOS Classic Dark"
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Material Icon Theme"
+  },
+
+  // Errors at the end of the line, like VS Code's Error Lens
+  "diagnostics": { "inline": { "enabled": true } },
+  // Type and parameter hints only while holding Option
+  "inlay_hints": {
+    "enabled": true,
+    "toggle_on_modifiers_press": { "alt": true }
+  },
+  "git": { "inline_blame": { "enabled": true, "delay_ms": 600 } },
+  "indent_guides": { "coloring": "indent_aware" },
+  "preview_tabs": { "enabled": true },
+
+  // Installed on first launch on a new machine
+  "auto_install_extensions": {
+    "astro": true,
+    "biome": true,
+    "dart": true,
+    "docker-compose": true,
+    "dockerfile": true,
+    "env": true,
+    "html": true,
+    "material-icon-theme": true,
+    "prisma": true,
+    "vue": true
+  },
+
+  "agent": {
+    "default_model": {
+      "provider": "ollama",
+      "model": "gemma3:4b"
+    },
+    "model_parameters": []
+  },
+
+  // Biome only starts in projects with a biome.json. The formatter stays on Zed's default
+  // (Prettier) so Prettier projects keep working; a Biome project picks Biome as its formatter
+  // in its own .zed/settings.json. Fix-all actions run whichever linter is active.
+  "lsp": {
+    "biome": {
+      "settings": {
+        "require_config_file": true
+      }
+    }
+  },
+  "languages": {
+    "JavaScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    },
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    }
+  }
+}
