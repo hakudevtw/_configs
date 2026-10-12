@@ -171,7 +171,7 @@ $EDITOR ~/.config/_configs/local.zsh   # 加上：export MY_SERVICE_TOKEN="..."
 
 它看的是指令文字（會穿透 `sudo`、`bash -c`、`$(...)`），所以只是防呆，不是資安邊界：自己寫程式去刪東西是攔不到的。hook 本身出錯時，會改成「先問你」。
 
-另外還有：權限確認時的通知（`Glass`／`Ping` 音效）、狀態列（模型、目錄、分支、context %、5 小時額度）、14 個唯讀 MCP 工具的預先放行。
+另外還有：狀態列（模型、目錄、分支、context %、5 小時額度）、14 個唯讀 MCP 工具的預先放行。
 
 ### 管理 skills
 
