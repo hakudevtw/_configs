@@ -11,8 +11,9 @@
 # 2. 告訴這台電腦它的 profile（work 或 personal）
 mkdir -p ~/.config/_configs && echo work > ~/.config/_configs/profile
 
-git clone <repo-url> ~/_configs
-cd ~/_configs
+mkdir -p ~/Documents/_me
+git clone <repo-url> ~/Documents/_me/_configs
+cd ~/Documents/_me/_configs
 ./install.sh
 ```
 
@@ -77,7 +78,7 @@ Brewfile 的某一行可以加上 `| replaces: 舊工具`。新工具裝好之�
 
 照順序做，每一步確認沒問題再往下，**舊工具最後才刪**：
 
-1. `cd ~/_configs && git pull`，然後 `mkdir -p ~/.config/_configs && echo personal > ~/.config/_configs/profile`。
+1. `cd ~/Documents/_me/_configs && git pull`，然後 `mkdir -p ~/.config/_configs && echo personal > ~/.config/_configs/profile`。
 2. 用 **Ghostty** 操作（不要用 Claude 裡的終端機）。先到「系統設定 → 隱私權與安全性 → App 管理」把 **Ghostty 打開**，Homebrew 才能接手你手動裝過的 app。
 3. `./scripts/brew-install.sh --dry-run` 預覽會裝什麼，確認後 `./scripts/brew-install.sh`。過程會要系統密碼；有失敗的項目，再跑一次就會補裝。
 4. `./scripts/link-terminal-config.sh`（或整套 `./install.sh`），連結 zsh、starship、mise、git 設定。
