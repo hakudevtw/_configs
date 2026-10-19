@@ -5,15 +5,15 @@ description: Implement or update a screen or component from a Figma design insid
 
 # Figma to codebase
 
-Version 0.5 (2026-10-07). Hand-distributed: if a colleague has an older copy, ask for the version line.
+Version 0.6 (2026-10-08). Hand-distributed: if a colleague has an older copy, ask for the version line. The highwaybus repo keeps its own copy in `.claude/skills/figma-to-codebase`.
 
-0.4 added what the first full redesign (IPC-106, a long landing page) got wrong: a precedent scan before the plan, a "no new colours, no scaled-up radii, no hand-rolled primitives" rule, structure decisions for aligned parts, and a verification step that compares **images**, not parameters. See **Known failure modes** at the end. 0.5 folds the generic parts of the highwaybus project override into this skill: disagreeing sources, a verification section in the plan, and the hand-off rule.
+0.4 added what the first full redesign (IPC-106, a long landing page) got wrong: a precedent scan before the plan, a "no new colours, no scaled-up radii, no hand-rolled primitives" rule, structure decisions for aligned parts, and a verification step that compares **images**, not parameters. See **Known failure modes** at the end. 0.5 folds the generic parts of the highwaybus project override into this skill: disagreeing sources, a verification section in the plan, and the hand-off rule. 0.6 (IPC-108, a form with no usable design) splits screen questions from behaviour questions, and covers working without Figma: parts with no design, a planner without the Figma MCP, and an implementer without it.
 
 The codebase is the **source of truth**. Figma is a **reference**: its tokens drift from the code, its structure is uneven, and it carries no annotations. Translate the design into what the codebase already has. Match intent, not pixels. A page built from this skill must look like it belongs to the rest of the site, not like a screenshot of the design.
 
 ## Prerequisites
 
-- The Figma MCP is connected, and the Figma plugin's `figma-design-to-code` skill is available. If either is missing, tell the user what is missing and wait.
+- The Figma MCP is connected, and the Figma plugin's `figma-design-to-code` skill is available. If either is missing, tell the user what is missing and offer the fallback in **Without Figma**; continue only on the user's yes.
 - Project specifics (token names, component conventions, breakpoints) live in the project's `CLAUDE.md`. Read it first. Where it is silent, read the code: the Tailwind config or CSS theme, `globals.css`, `components/ui`, and two or three existing pages.
 - Project docs may add environment-specific rules this skill cannot know: the icon library by name, breakpoint widths, how to start the dev server, how strings are translated, and a hand-off to another workflow. Follow them; they add to this skill and never relax it.
 - Figma MCP calls are rate-limited per seat. Budget them: fetch each frame's full-resolution screenshot **once** and slice it locally; fetch design context per section, not per element.
@@ -38,15 +38,21 @@ Invoke `figma-design-to-code` and follow its fetching mechanics: design context,
 
 **Sources that disagree.** Figma, attached images, and tracker comments can disagree. Put each disagreement in plan section 7 and wait for the user's answer. An attached image is a reference until the user names it the target.
 
+**Keep what the implementer needs.** Figma asset URLs expire after 7 days, and the implementer may have no Figma access at all. Before the plan is approved, save to the place the project docs name for ticket material: the design screenshot of every frame and section the plan refers to, every image asset (exported as below), and the design values the token map cites. Verification in step 6 compares against these saved files.
+
 **Image assets.** A design image is often a crop of a larger source, with a gradient or mask on top. Use the node's **export** (2x) for any image that is cropped, masked or overlaid in the design; use the raw source only for an image shown whole. Never rebuild a crop from `left`/`width`/`object-position` numbers. Convert to webp and place it where the project keeps images.
 
 ### 4. Plan, then wait
 
 Write the plan with these nine sections and present it. Done when the user approves the whole plan. Revise only the sections the user disputes.
 
-If the project docs hand the plan to another workflow for implementation (for example a separate `/implement` skill), stop here: the approved plan is that workflow's spec, and steps 5 and 6 are carried out there. Keep the plan in the conversation, and attach it to the tracker issue only if the user agrees.
+If the project docs hand the plan to another workflow for implementation (for example a separate `/implement` skill), stop here: the approved plan is that workflow's spec, and steps 5 and 6 are carried out there. Save the plan where the project docs say.
 
-1. **Differences**: current screenshot against the design; list only real differences.
+**The plan settles how the screen looks; the spec settles how it behaves.** What can be written as a test (what happens on success or failure, what is kept or cleared, where focus goes, which values are allowed) is behaviour. When the spec leaves a behaviour open, ask it like any other question, then write the answer back into the spec through the project's spec workflow; do not keep it only in the plan.
+
+**Asking.** Put section 7 to the user **one question per turn**: the options, your recommendation and its reason. When an option costs code (a cross-field check, focus or scroll handling, a partial reset, extra state, a new shared component), name the cost beside it in one line, and say when an option is free because the library already behaves that way.
+
+1. **Differences**: current screenshot against the design; list only real differences. Name every part the design does not cover, or that the user ruled out of the design: it is built from the spec and the precedent pages (step 2), and section 9 verifies it against those pages instead of the design.
 2. **Reuse**: for each part of the design, the shadcn/ui or project component that covers it, citing the precedent from step 2. **A plain element where a primitive exists is an exception that needs a reason**, and "it needs overrides" is not one: count the overrides a primitive would need and compare with what the precedent pages use. If the precedent needs three and you expect twelve, you are choosing the wrong primitive or the wrong pattern; say so in section 7.
 3. **Downloads**: shadcn components to add (a missing primitive that the design needs, such as a table, is added, not hand-rolled), images with the export/raw choice, non-icon SVGs. Announce them here; fetch after approval. List every icon in the design with the icon chosen for it from the project's icon library (see **Icons**); an icon with no match goes to section 7, not here.
 4. **Token map**: every colour, font size, spacing and radius in the design, mapped to a Tailwind class or project token. Mark each "exact" or "nearest".
@@ -101,6 +107,14 @@ Verification compares **pictures**. Reading Figma's numbers and checking the cod
 
 Done when no "to fix" item remains; the user decides pass or fail.
 
+## Without Figma
+
+Three cases. In each, say in the plan which one applies.
+
+- **A part has no design** (not drawn, or ruled out by the user or the spec): build it from the spec and the precedent scan. Every value in the token map for that part is "precedent", citing the page. Verification compares it with the precedent page at the same widths.
+- **The planner has no Figma MCP** (not connected, rate-limited, no seat): ask the user for exported frames (PNG at 2x) and, if they can, the design values from Dev Mode. Work from those files: mark every token-map value read off an image as "from image", and put any value that matters (a size that changes layout, a colour with no semantic match) in section 7. Images still need a proper export from someone with access; list them under Downloads as "to be exported".
+- **The implementer has no Figma MCP**: nothing changes if step 3 saved the screenshots, assets and values. If something is missing, stop and ask; do not guess a value from memory of the design.
+
 ## Known failure modes
 
 Each of these cost a review round on IPC-106. The steps above exist to catch them.
@@ -114,3 +128,4 @@ Each of these cost a review round on IPC-106. The steps above exist to catch the
 - Cards, tables and notes were hand-rolled with large radii although the site's pages use `Card`, `Alert` and default radii, and no table primitive had been added. (Step 2 precedent scan; step 4.2, 4.3 and 4.4.)
 - A tab label and the duration shown under it came from two sheet tabs that disagreed, and both were copied. (Step 4.7.)
 - A second dev server was started against the same build directory and broke the first. (Step 5, dev server.)
+- Thirteen of sixteen plan questions on IPC-108 were behaviour (success state, reset, focus, date limits), not screen; two of them changed the published spec. (Step 4, plan versus spec; the project's grill should have asked them.)
