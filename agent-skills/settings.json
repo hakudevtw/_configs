@@ -45,16 +45,5 @@
     "type": "command",
     "command": "python3 \"$HOME/.claude/hooks/statusline.py\""
   },
-  "enabledPlugins": {
-    "ipc@ipc-workflow": true
-  },
-  "extraKnownMarketplaces": {
-    "ipc-workflow": {
-      "source": {
-        "source": "github",
-        "repo": "hakudevtw/ipc-workflow"
-      }
-    }
-  },
   "theme": "dark"
 }
